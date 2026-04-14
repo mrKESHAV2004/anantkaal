@@ -13,6 +13,7 @@ app.use(cors({
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const supabase = createClient(
   process.env.PUBLIC_SUPABASE_URL,
