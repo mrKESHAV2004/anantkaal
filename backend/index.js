@@ -7,7 +7,25 @@ const { createClient } = require("@supabase/supabase-js");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://anantkaal.vercel.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow non-browser requests
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 
 const supabase = createClient(
   process.env.PUBLIC_SUPABASE_URL,
