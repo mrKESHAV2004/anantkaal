@@ -5,9 +5,14 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const { createClient } = require("@supabase/supabase-js");
 
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
+
 const app = express();
 app.use(express.json());
-app.use(cors());
 
 const supabase = createClient(
   process.env.PUBLIC_SUPABASE_URL,

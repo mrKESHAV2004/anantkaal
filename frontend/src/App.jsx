@@ -13,9 +13,9 @@ import {
   Users,
   Briefcase
 } from 'lucide-react';
-
-const API_URL = 'http://localhost:5000/api';
-
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
+console.log(import.meta.env.VITE_TEST);
+console.log(import.meta.env);
 /* ===========================
    🔑 JWT DECODER UTILITY
 =========================== */
