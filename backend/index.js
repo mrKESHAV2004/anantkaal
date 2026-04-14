@@ -214,7 +214,6 @@ app.post("/api/tasks", authMiddleware, async (req, res) => {
   }
 });
 
-// UPDATE TASK
 app.put("/api/tasks/:id", authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
@@ -224,7 +223,6 @@ app.put("/api/tasks/:id", authMiddleware, async (req, res) => {
       .from("tasks")
       .update({ title, description, status, assigned_to })
       .eq("id", id)
-      .eq("team_id", req.user.team_id)
       .select();
 
     if (error) throw error;
