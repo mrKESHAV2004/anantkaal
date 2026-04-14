@@ -10,12 +10,17 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://anantkaal.vercel.app"
+    "http://localhost:3000",
+    "https://anantkaal.vercel.app",
+    "https://www.anantkaal.vercel.app"  // add www variant too
   ],
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-app.use(express.json());
+// ⚠️ This is critical — handle preflight OPTIONS requests
+app.options("*", cors());
 
 
 const supabase = createClient(
