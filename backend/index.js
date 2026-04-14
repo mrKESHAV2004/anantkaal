@@ -20,7 +20,7 @@ app.use(cors({
 }));
 
 // ⚠️ This is critical — handle preflight OPTIONS requests
-app.options("*", cors());
+app.options("/", cors());
 
 
 const supabase = createClient(
